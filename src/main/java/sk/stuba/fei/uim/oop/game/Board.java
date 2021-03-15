@@ -39,42 +39,7 @@ public class Board {
             }
         }
 
-        for (int i = 0; i < BOARD_SIZE; i++) {
-            for (int j = 0; j < BOARD_SIZE; j++) {
-                if (this.board[i][j] instanceof Empty) {
-                    Empty empty = (Empty) this.board[i][j];
-                    List<Tile> orthogonal = new ArrayList<>();
-                    if (i - 1 >= 0) {
-                        orthogonal.add(this.board[i - 1][j]);
-                    }
-                    if (i + 1 < BOARD_SIZE) {
-                        orthogonal.add(this.board[i + 1][j]);
-                    }
-                    if (j - 1 >= 0) {
-                        orthogonal.add(this.board[i][j - 1]);
-                    }
-                    if (j + 1 < BOARD_SIZE) {
-                        orthogonal.add(this.board[i][j + 1]);
-                    }
-                    empty.addOrthogonalNeighbours(orthogonal);
-
-                    List<Tile> diagonal = new ArrayList<>();
-                    if (i - 1 >= 0 && j - 1 >= 0) {
-                        diagonal.add(this.board[i - 1][j - 1]);
-                    }
-                    if (i - 1 >= 0 && j + 1 < BOARD_SIZE) {
-                        diagonal.add(this.board[i - 1][j + 1]);
-                    }
-                    if (i + 1 < BOARD_SIZE && j - 1 >= 0) {
-                        orthogonal.add(this.board[i + 1][j - 1]);
-                    }
-                    if (i + 1 < BOARD_SIZE && j + 1 < BOARD_SIZE) {
-                        orthogonal.add(this.board[i + 1][j + 1]);
-                    }
-                    empty.addDiagonalNeighbours(diagonal);
-                }
-            }
-        }
+        this.addTileNeighbours();
     }
 
     public String draw() {
@@ -107,5 +72,41 @@ public class Board {
 
     public void reveal(Move move) throws MineRevealedException {
         this.board[move.y][move.x].reveal();
+    }
+
+    private void addTileNeighbours() {
+        for (int i = 0; i < BOARD_SIZE; i++) {
+            for (int j = 0; j < BOARD_SIZE; j++) {
+                if (this.board[i][j] instanceof Empty) {
+                    Empty empty = (Empty) this.board[i][j];
+                    List<Tile> neighbours = new ArrayList<>();
+                    if (i - 1 >= 0) {
+                        neighbours.add(this.board[i - 1][j]);
+                        if (j - 1 >= 0) {
+                            neighbours.add(this.board[i - 1][j - 1]);
+                        }
+                        if (j + 1 < BOARD_SIZE) {
+                            neighbours.add(this.board[i - 1][j + 1]);
+                        }
+                    }
+                    if (i + 1 < BOARD_SIZE) {
+                        neighbours.add(this.board[i + 1][j]);
+                        if (j - 1 >= 0) {
+                            neighbours.add(this.board[i + 1][j - 1]);
+                        }
+                        if (j + 1 < BOARD_SIZE) {
+                            neighbours.add(this.board[i + 1][j + 1]);
+                        }
+                    }
+                    if (j - 1 >= 0) {
+                        neighbours.add(this.board[i][j - 1]);
+                    }
+                    if (j + 1 < BOARD_SIZE) {
+                        neighbours.add(this.board[i][j + 1]);
+                    }
+                    empty.addNeighbours(neighbours);
+                }
+            }
+        }
     }
 }
