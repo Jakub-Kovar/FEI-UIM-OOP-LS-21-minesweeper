@@ -11,8 +11,8 @@ import java.util.Random;
 
 public class Board {
 
-    public static final int BOARD_SIZE = 10;
-    public static final int MINE_COUNT = 20;
+    public static final int BOARD_SIZE = 9;
+    public static final int MINE_COUNT = 10;
 
     private Tile[][] board;
 
