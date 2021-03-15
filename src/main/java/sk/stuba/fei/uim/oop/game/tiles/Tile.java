@@ -20,4 +20,8 @@ public abstract class Tile {
     public void reveal() throws MineRevealedException {
         this.revealed = true;
     }
+
+    protected boolean isRevealed() {
+        return revealed;
+    }
 }
