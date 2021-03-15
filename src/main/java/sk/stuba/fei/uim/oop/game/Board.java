@@ -45,7 +45,7 @@ public class Board {
     public String draw() {
         StringBuilder builder = new StringBuilder();
 
-        builder.append("  0123456789\n");
+        builder.append("  012345678\n");
 
         for (int i = 0; i < BOARD_SIZE; i++) {
             builder.append((char) ('a' + i));
