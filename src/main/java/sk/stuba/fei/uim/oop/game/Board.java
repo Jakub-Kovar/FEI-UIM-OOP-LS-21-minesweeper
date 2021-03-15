@@ -1,15 +1,18 @@
 package sk.stuba.fei.uim.oop.game;
 
 import sk.stuba.fei.uim.oop.game.tiles.Empty;
+import sk.stuba.fei.uim.oop.game.tiles.Mine;
 import sk.stuba.fei.uim.oop.game.tiles.MineRevealedException;
 import sk.stuba.fei.uim.oop.game.tiles.Tile;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Board {
 
     public static final int BOARD_SIZE = 10;
+    public static final int MINE_COUNT = 20;
 
     private Tile[][] board;
 
@@ -22,6 +25,17 @@ public class Board {
         for (int i = 0; i < BOARD_SIZE; i++) {
             for (int j = 0; j < BOARD_SIZE; j++) {
                 this.board[i][j] = new Empty();
+            }
+        }
+
+        Random rand = new Random();
+        int minesLeft = MINE_COUNT;
+        while (minesLeft > 0) {
+            int mx = rand.nextInt(BOARD_SIZE);
+            int my = rand.nextInt(BOARD_SIZE);
+            if (this.board[my][mx] instanceof Empty) {
+                this.board[my][mx] = new Mine();
+                minesLeft--;
             }
         }
 

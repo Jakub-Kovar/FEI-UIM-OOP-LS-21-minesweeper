@@ -18,7 +18,8 @@ public class Game {
                 this.board.reveal(getNextMove());
             }
         } catch (MineRevealedException e) {
-            System.out.println("mina");
+            System.out.println("You stepped on a mine!");
+            System.out.println(this.board.draw());
         }
     }
 
