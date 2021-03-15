@@ -94,6 +94,17 @@ public class Board {
         return builder.toString();
     }
 
+    public boolean isBoardRevealed() {
+        for (int i = 0; i < BOARD_SIZE; i++) {
+            for (int j = 0; j < BOARD_SIZE; j++) {
+                if (!this.board[i][j].isRevealed() && !(this.board[i][j] instanceof Mine)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     public void reveal(Move move) throws MineRevealedException {
         this.board[move.y][move.x].reveal();
     }

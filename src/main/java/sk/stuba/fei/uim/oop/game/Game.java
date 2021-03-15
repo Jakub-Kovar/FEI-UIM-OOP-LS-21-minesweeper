@@ -13,7 +13,7 @@ public class Game {
 
     public void play() {
         try {
-            while(true) {
+            while(!this.board.isBoardRevealed()) {
                 System.out.println(this.board.draw());
                 this.board.reveal(getNextMove());
             }
@@ -21,6 +21,7 @@ public class Game {
             System.out.println("You stepped on a mine!");
             System.out.println(this.board.draw());
         }
+        System.out.println("You have revealed the whole board!");
     }
 
     private Move getNextMove() {

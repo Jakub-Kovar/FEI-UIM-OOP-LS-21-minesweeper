@@ -21,7 +21,7 @@ public abstract class Tile {
         this.revealed = true;
     }
 
-    protected boolean isRevealed() {
+    public boolean isRevealed() {
         return revealed;
     }
 }
