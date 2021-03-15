@@ -1,6 +1,7 @@
 package sk.stuba.fei.uim.oop.game;
 
 import sk.stuba.fei.uim.oop.game.tiles.Empty;
+import sk.stuba.fei.uim.oop.game.tiles.MineRevealedException;
 import sk.stuba.fei.uim.oop.game.tiles.Tile;
 
 public class Board {
@@ -37,5 +38,9 @@ public class Board {
         }
 
         return builder.toString();
+    }
+
+    public void reveal(Move move) throws MineRevealedException {
+        this.board[move.y][move.x].reveal();
     }
 }
